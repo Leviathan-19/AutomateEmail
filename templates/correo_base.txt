@@ -1,0 +1,9 @@
+Estimado/a,
+
+Se le informa que el equipo asignado al área de {area} es:
+
+Equipo: {equipo}
+Serial: {serial}
+
+Saludos,
+Departamento de TI
