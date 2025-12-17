@@ -1,9 +1,11 @@
 Estimado/a,
 
-Se le informa que el equipo asignado al área de {area} es:
-
+Se le notifica que necesitamos realizar el mantenimiento de su equipo:
 Equipo: {equipo}
 Serial: {serial}
+Correspondiente al area de {area}
+Por favor comunicarse con TI para coordinar el respectivo mantenimiento,
+a lo largo de estos días :v
 
 Saludos,
 Departamento de TI
