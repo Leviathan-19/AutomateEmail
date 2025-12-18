@@ -2,9 +2,11 @@ import smtplib
 from email.message import EmailMessage
 from config import SMTP_SERVER, SMTP_PORT, SMTP_USER, SMTP_PASSWORD
 
+SENDER_NAME = "Sistema Angular"
+
 def enviar_correo(destinatario, asunto, cuerpo):
     msg = EmailMessage()
-    msg["From"] = SMTP_USER
+    msg["From"] = f"{SENDER_NAME} <{SMTP_USER}>"
     msg["To"] = destinatario
     msg["Subject"] = asunto
     msg.set_content(cuerpo)
@@ -13,3 +15,4 @@ def enviar_correo(destinatario, asunto, cuerpo):
         server.starttls()
         server.login(SMTP_USER, SMTP_PASSWORD)
         server.send_message(msg)
+

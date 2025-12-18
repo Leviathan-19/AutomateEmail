@@ -1,6 +1,15 @@
 from csv_reader import leer_csv
 from mailer import enviar_correo
 
+
+# from mailer import enviar_correo
+
+# enviar_correo(
+#     destinatario="pasante.it@ituran.com.ec",
+#     asunto="Prueba SMTP Gmail",
+#     cuerpo="Correo enviado desde Python usando Gmail"
+# )
+
 RUTA_CSV = "../data/destinatarios.csv"
 RUTA_TEMPLATE = "../templates/correo_base.txt"
 
@@ -10,8 +19,9 @@ def cargar_template():
 
 def main():
     datos = leer_csv(RUTA_CSV)
+    print(datos.columns)
     template = cargar_template()
-
+    
     for _, fila in datos.iterrows():
         cuerpo = template.format(
             area=fila["area"],
