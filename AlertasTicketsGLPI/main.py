@@ -3,12 +3,13 @@ from glpi_client import init_session, get_today_tickets
 from utils import load_read_tickets, save_read_tickets
 from voice import speak
 from utils import clean_glpi_text
-
+from utils import reset_if_new_day
 
 CHECK_INTERVAL = 180  #segundos  (3 minutos)
 
 
 def build_ticket_speech(ticket):
+    id_ticket = ticket.get("id", "Desconocido")
     solicitante = ticket.get("users_id_recipient", "Usuario no identificado")
     asunto = ticket.get("name", "Sin asunto")
 
@@ -17,6 +18,7 @@ def build_ticket_speech(ticket):
     fecha = clean_glpi_text(ticket.get("date", ""))
     return (
         f"Ticket nuevo entrante. "
+        f"Numero de ticket: {id_ticket}. "
         f"Asunto: {asunto}. "
         f"Usuario solicitante: {solicitante}. "
         f"Categoría: {categoria}. "
@@ -27,6 +29,9 @@ def build_ticket_speech(ticket):
 
 def main():
     session_token = init_session()
+    if reset_if_new_day():
+        save_read_tickets(set())
+        print("Nuevo día detectado, tickets reiniciados")
     read_tickets = load_read_tickets()
 
     print("Notificador de GLPI iniciado 🔊")

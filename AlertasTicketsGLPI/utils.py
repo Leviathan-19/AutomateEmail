@@ -47,3 +47,26 @@ def load_read_tickets():
 def save_read_tickets(ticket_ids):
     with open(READ_TICKETS_FILE, "w", encoding="utf-8") as f:
         json.dump(list(ticket_ids), f, indent=2)
+
+from datetime import date
+
+RESET_FILE = "last_reset.txt"
+
+def reset_if_new_day():
+    today = date.today().isoformat()
+
+    if not os.path.exists(RESET_FILE):
+        with open(RESET_FILE, "w") as f:
+            f.write(today)
+        return True 
+
+    with open(RESET_FILE, "r") as f:
+        last_day = f.read().strip()
+
+    if last_day != today:
+        # Nuevo día → limpiar tickets leídos
+        with open(RESET_FILE, "w") as f:
+            f.write(today)
+        return True
+
+    return False
