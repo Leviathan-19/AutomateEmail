@@ -43,7 +43,7 @@ def main():
             ticket_id = ticket["id"]
 
             if ticket_id in read_tickets:
-                continue  # ya fue leído
+                continue
 
             texto = build_ticket_speech(ticket)
             print(texto)

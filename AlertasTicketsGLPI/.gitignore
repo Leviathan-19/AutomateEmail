@@ -1,1 +1,5 @@
 /config.py
+/dist
+/AlertasTicketsGLPI/__pycache__
+/AlertasTicketsGLPI.spec
+/build
